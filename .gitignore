@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # Face Database
-*/*.bin
+**/*.bin
 
 # Mac stuff
 **/.DS_Store
