@@ -82,7 +82,7 @@ while (capture.isOpened()):
             for (idx, value) in enumerate(matches):
                 if value:
                     matchedIdxs.append(idx)
-            # matchedIdxs = [i for (i, b) in enumerate(matches) if b]
+            
             counts = {}
             # loop over the matched indexes and maintain a count for
             # each recognized face
