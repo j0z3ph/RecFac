@@ -37,7 +37,7 @@ import pickle
 import os
 
 # set 1 for macOS, maybe 0 for windows and others
-capture = cv2.VideoCapture(1)
+capture = cv2.VideoCapture(0)
 trainedEncodings = []  # to store encodings
 trainedIDs = []  # to store ids
 cont = 0  # face image counter
