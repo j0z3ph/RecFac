@@ -47,8 +47,8 @@ FACEDB = os.path.join(file_dir, FACEDB)
 FACEDB = os.path.abspath(os.path.realpath(FACEDB))
 
 # confidence 
-#conf = 0.9
-#maxImgs = 50
+conf = 0.5
+maxImgs = 100
 
 # load the faces database
 print("Loading faces database...")
@@ -98,8 +98,8 @@ while (capture.isOpened()):
             # select first entry in the dictionary)
             id = max(counts, key=counts.get)
             print(counts)
-            #if(counts[id] < (maxImgs * conf)):
-            #    id = "Unknown"
+            if(counts[id] < (maxImgs * conf)):
+                id = "Unknown"
 
         # update the list of ids
         userIDs.append(id)
