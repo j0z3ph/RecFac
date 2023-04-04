@@ -39,12 +39,16 @@ import pickle
 import os
 
 # set 1 for macOS, maybe 0 for windows and others
-capture = cv2.VideoCapture(1)
+capture = cv2.VideoCapture(0)
 FACEDB = "../facedb/facedatabase.dat"  # name of the database
 
 file_dir = os.path.dirname(os.path.realpath(__file__))
 FACEDB = os.path.join(file_dir, FACEDB)
 FACEDB = os.path.abspath(os.path.realpath(FACEDB))
+
+# confidence 
+conf = 0.5
+maxImgs = 100
 
 # load the faces database
 print("Loading faces database...")
@@ -68,7 +72,7 @@ while (capture.isOpened()):
         # attempt to match each face in the input image to our known
         # encodings
         matches = face_recognition.compare_faces(faceData["encodings"],
-                                                 encoding)
+                                                 encoding, 0.5)
         # matches contains a list of True/False values indicating
         # which known_face_encodings match the face encoding to check
         id = "Unknown"
@@ -93,6 +97,9 @@ while (capture.isOpened()):
             # votes (note: in the event of an unlikely tie Python will
             # select first entry in the dictionary)
             id = max(counts, key=counts.get)
+            print(counts)
+            if(counts[id] < (maxImgs * conf)):
+                id = "Unknown"
 
         # update the list of ids
         userIDs.append(id)
